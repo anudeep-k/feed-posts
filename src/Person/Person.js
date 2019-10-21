@@ -1,15 +1,21 @@
-import React from 'react';
-import  classes from './Person.css';
+import React ,{Component }from 'react';
+import  classes from './Person.module.css';
+import Aux from '../hoc/Auxilliary';
 
-const person=(props)=>{
-return(
-    <div className={classes.Person}>
-    <p onClick={props.click}>My name is {props.fname} {props.lname}</p>
- 
+class Person extends Component{
+    render(){
+        return(
+            <Aux>
+                <div className={classes.Person}>
+            <p onClick={this.props.click}>My name is {this.props.fname} {this.props.lname}</p>
+            {this.props.children}
+        
+            <input onChange={this.props.change} value={this.props.fname} />
+            </div>
+            </Aux>
+        )
+    }
 
-    <input onChange={props.change} value={props.fname} />
-    </div>
-)
 } 
 
-export default person; 
+export default Person; 

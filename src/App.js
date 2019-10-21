@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
-import Person from './Person/Person';
-
-
-
-
+import Persons from './Person/Persons';
+import Cockpit from './Cockpit/Cockpit';
+import WithClass from './hoc/WithClass';
 class App extends Component {
+  
+  constructor(props){
+super(props);
+console.log('[App.js]')
+  }
+
+  getDerivedStateFromProps(){
+
+  }
 state={
   person:[
     {id:"1",fname:"Anudeep", lname:"Kartham"},
@@ -77,60 +84,30 @@ this.setState({
 
   render (){
    let persons=null;
-   const styles={
-    backgroundColor:'green'
-  }
-
+  
    if(this.state.otherState){
     persons =(
-      <div>
-        {this.state.person.map((person,index)=>{
-          return(
-          <Person 
-          click={()=>this.deletePersonHandler(index)}
-          fname={person.fname}
-          lname={person.lname}
-          key={person.id}
-          change={(event)=>this.changedHandler(event,person.id)}
-          />)
-        })}
-      {/* <Person 
-      fname={this.state.person[0].fname} 
-      lname={this.state.person[0].lname}/>
-      <Person 
-      fname={this.state.person[1].fname} 
-      lname={this.state.person[1].lname}
-      click={()=>this.switchPersonHandler("Anudeep!!!!")}
-      change={this.changedHandler}> People call me GOAT</Person>
-      <Person 
-      fname={this.state.person[2].fname} 
-      lname={this.state.person[2].lname}/> */}
-     </div>  
+       <Persons  persons={this.state.person}
+      clicked={(index)=>this.deletePersonHandler(index)}      
+      changed={(event,id)=>this.changedHandler(event,id)}
+      />
+      
      );
- styles.backgroundColor='red';
+ 
    }
     return(
-      <div>
-         <h1>Welcome to React</h1>
-     <button 
-     onClick={this.togglePersonHandler}
-     style={styles}
-     > Switch Person</button>
-        
-       
+   <WithClass>
+       <Cockpit 
+       persons={this.state.otherState} 
+       clicked= {this.togglePersonHandler}
+     
+       />
      {persons}
-        
-
-      </div>
-  
+     </WithClass>
+      
     );
-
-    
+ }
   
-  }
-  
- 
-    
   }
  
 
