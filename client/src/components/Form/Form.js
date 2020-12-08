@@ -47,7 +47,7 @@ else{
         <div>
            <Paper className={classes.paper}>
 <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={submitHandler}>
-    <Typography variant="h6" > {currentId? 'Editing a Memory' :'Creating a Memory'}
+    <Typography variant="h6" > {currentId? 'Editing a Post' :'Creating a Post'}
 
     </Typography>
     <TextField name="creator" variant="outlined" label= "creator" fullWidth  value={postData.creator} onChange={(e)=>setPostData({...postData,creator:e.target.value})}/>
